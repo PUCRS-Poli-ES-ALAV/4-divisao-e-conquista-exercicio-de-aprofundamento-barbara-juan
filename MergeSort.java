@@ -19,10 +19,9 @@ public class MergeSort {
         System.out.println("Tempo gasto: " + time);      
     }
 
-    public static List<Integer> mergeSort(List<Integer> sortedList, int count) {
-        count++;    
+    public static List<Integer> mergeSort(List<Integer> sortedList, int count) { 
         if (sortedList.size()==1) {
-            System.out.println(count);
+            System.out.println("iterações: " + count);
             return sortedList;       
         }
        
@@ -30,12 +29,14 @@ public class MergeSort {
        List<Integer> a = sortedList.subList(0,halfSize);
        List<Integer> b = sortedList.subList(halfSize,sortedList.size());
        a = mergeSort(a,count);
+       count++;
        b = mergeSort(b,count);
-       sortedList = merge(a,b);
+       count++;
+       sortedList = merge(a,b, count);
        return sortedList;  
     }
 
-    public static List<Integer> merge(List<Integer> a, List<Integer> b){
+    public static List<Integer> merge(List<Integer> a, List<Integer> b, int count){
         ArrayList<Integer> merged = new ArrayList<>();
         int i = 0, j = 0;
         for (int counter = 0; counter <(a.size()*2); counter++) {
@@ -55,16 +56,8 @@ public class MergeSort {
                 merged.add(b.get(j));
                 j++;
             }
+            count++;
         }
         return merged;
     }
-    
-    /*public static int maiorValor(List<Integer>a, int n){
-        int max = a.get(0);
-        for (int i = 1; i < n; i++) {
-           if( a.get(i) > max ) 
-            max = a.get(i);
-        }
-        return max;
-    }*/
 }
